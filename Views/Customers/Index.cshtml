@@ -1,0 +1,55 @@
+@model IEnumerable<CRUD.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h1>Customers</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Add Customer</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Contact Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.CustomerName</td>
+                <td>@customer.ContactName</td>
+                <td>@customer.Email</td>
+                <td>@customer.Phone</td>
+                <td>@customer.Address</td>
+                <td>@customer.City</td>
+                <td>@customer.State</td>
+                <td>@customer.ZipCode</td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@customer.Id"
+                       class="btn btn-sm btn-warning">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@customer.Id"
+                       class="btn btn-sm btn-danger"
+                       onclick="return confirm('Delete this customer?')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
